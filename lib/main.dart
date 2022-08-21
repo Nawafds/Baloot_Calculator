@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './widget/round_list.dart';
 import './widget/team_title.dart';
 import './widget/add_score.dart';
+import 'package:collection/collection.dart';
 
 //trying pulling files
 
@@ -23,6 +24,26 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
+}
+
+void _showAlertDialog(BuildContext context, String winner) {
+  showCupertinoModalPopup<void>(
+    context: context,
+    builder: (BuildContext context) => CupertinoAlertDialog(
+      title: Text(winner),
+      actions: <CupertinoDialogAction>[
+        CupertinoDialogAction(
+          /// This parameter indicates this action is the default,
+          /// and turns the action's text to bold text.
+          isDefaultAction: true,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('صكة جديدة'),
+        ),
+      ],
+    ),
+  );
 }
 
 class _HomePageState extends State<HomePage> {
@@ -65,11 +86,44 @@ class _HomePageState extends State<HomePage> {
       width: deviceWidth * 0.45,
     );
 
-    void _addScore(int t1, int t2) {
+    void _addScore(String t1, String t2) {
+      int holdTeam1 = 0;
+      int holdTeam2 = 0;
+
+      if (t1.isNotEmpty && t2.isEmpty) {
+        holdTeam1 = int.parse(t1);
+      } else if (t1.isEmpty && t2.isNotEmpty) {
+        holdTeam2 = int.parse(t2);
+      } else if (t1.isNotEmpty && t2.isNotEmpty) {
+        holdTeam1 = int.parse(t1);
+        holdTeam2 = int.parse(t2);
+      } else {
+        return;
+      }
+
       setState(() {
-        team1.add(t1);
-        team2.add(t2);
+        team1.add(holdTeam1);
+        team2.add(holdTeam2);
       });
+      if (team1.sum >= 152 && team1.sum > team2.sum) {
+        _showAlertDialog(
+            context,
+            ' حظ اوفر خسرتم لكم ' +
+                team2.sum.toString() +
+                ' ولهم ' +
+                team1.sum.toString());
+        team1.clear();
+        team2.clear();
+      } else if (team2.sum >= 152 && team2.sum > team1.sum) {
+        _showAlertDialog(
+            context,
+            ' مبروك ربحتم لكم ' +
+                team2.sum.toString() +
+                ' ولهم ' +
+                team1.sum.toString());
+        team1.clear();
+        team2.clear();
+      }
     }
 
     return GestureDetector(
@@ -78,7 +132,6 @@ class _HomePageState extends State<HomePage> {
       },
       child: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
-          // Try removing opacity to observe the lack of a blur effect and of sliding content.
           backgroundColor: CupertinoColors.darkBackgroundGray,
           middle: const Text(
             'حسبة بلوت',
@@ -101,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: <Widget>[
                       Rounds_list(team1),
-                      VerticalDivider(
+                      const VerticalDivider(
                         color: Colors.black,
                         thickness: 2,
                       ),

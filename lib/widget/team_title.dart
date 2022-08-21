@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 class TeamTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey,
+    return Container(margin: EdgeInsets.only(top: 10),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Text(
           'لهم',
           textAlign: TextAlign.center,
           style: TextStyle(
             decoration: TextDecoration.none,
-            fontSize: 35,
+            fontSize: 30,
             color: Colors.lightGreen,
             fontWeight: FontWeight.bold,
           ),
@@ -21,7 +20,7 @@ class TeamTitle extends StatelessWidget {
           textAlign: TextAlign.center,
           style: TextStyle(
             decoration: TextDecoration.none,
-            fontSize: 35,
+            fontSize: 30,
             color: Colors.lightGreen,
             fontWeight: FontWeight.bold,
           ),

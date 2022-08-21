@@ -8,10 +8,6 @@ class Rounds_list extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_entry.sum >= 152) {
-      _entry.clear();
-    }
-
     return Container(
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.5,
@@ -24,9 +20,9 @@ class Rounds_list extends StatelessWidget {
                   Text(
                     _entry[index].toString(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       decoration: TextDecoration.none,
-                      fontSize: 35,
+                      fontSize: 20,
                       color: Colors.lightGreen,
                       fontWeight: FontWeight.normal,
                     ),
@@ -36,7 +32,7 @@ class Rounds_list extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       decoration: TextDecoration.none,
-                      fontSize: 35,
+                      fontSize: 20,
                       color: Colors.lightGreen,
                       fontWeight: FontWeight.normal,
                     ),
@@ -44,9 +40,9 @@ class Rounds_list extends StatelessWidget {
                   Text(
                     _entry.sum.toString(),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       decoration: TextDecoration.none,
-                      fontSize: 35,
+                      fontSize: 20,
                       color: Colors.lightGreen,
                       fontWeight: FontWeight.normal,
                     ),

@@ -17,28 +17,29 @@ class Rounds_list extends StatelessWidget {
                 margin: EdgeInsets.only(
                     bottom: MediaQuery.of(context).size.height * 0.05),
                 child: Column(children: [
+                  _entry.length == 1
+                      ? Text(
+                          '0 + ${_entry[index].toString()}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 15,
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        )
+                      : Text(
+                          '${_entry.sublist(0, index).sum.toString()} + ${_entry[index].toString()}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            decoration: TextDecoration.none,
+                            fontSize: 15,
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
                   Text(
-                    _entry[index].toString(),
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      decoration: TextDecoration.none,
-                      fontSize: 20,
-                      color: Colors.lightGreen,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  const Text(
-                    '-----',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      decoration: TextDecoration.none,
-                      fontSize: 20,
-                      color: Colors.lightGreen,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  Text(
-                    _entry.sum.toString(),
+                    '------\n${_entry.sublist(0, index + 1).sum.toString()}',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       decoration: TextDecoration.none,

@@ -49,7 +49,7 @@ class AddScore extends StatelessWidget {
       color: Colors.lightGreen,
       onPressed: () => _addScore(_teamOneScore.text, _teamTwoScore.text),
 
-    //  onPressed: () =>  _showAlertDialog(context),
+      //  onPressed: () =>  _showAlertDialog(context),
     );
 
     return Column(

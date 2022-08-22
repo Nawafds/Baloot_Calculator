@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class TeamTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(margin: EdgeInsets.only(top: 10),
+    return Container(
+      margin: EdgeInsets.only(top: 10),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Text(
           'لهم',

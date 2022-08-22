@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Baloot Calculator',
       home: HomePage(),
     );
@@ -39,8 +40,17 @@ void _showAlertDialog(BuildContext context, String winner) {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('صكة جديدة'),
+          child: const Text('لا'),
         ),
+        CupertinoDialogAction(
+          /// This parameter indicates this action is the default,
+          /// and turns the action's text to bold text.
+          isDefaultAction: true,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('نعم'),
+        )
       ],
     ),
   );
@@ -108,7 +118,7 @@ class _HomePageState extends State<HomePage> {
       if (team1.sum >= 152 && team1.sum > team2.sum) {
         _showAlertDialog(
             context,
-            ' حظ اوفر خسرتم لكم ' +
+            ' حظ اوفر خسرتم\n لكم ' +
                 team2.sum.toString() +
                 ' ولهم ' +
                 team1.sum.toString());
@@ -117,7 +127,7 @@ class _HomePageState extends State<HomePage> {
       } else if (team2.sum >= 152 && team2.sum > team1.sum) {
         _showAlertDialog(
             context,
-            ' مبروك ربحتم لكم ' +
+            ' مبروك ربحتم\n لكم ' +
                 team2.sum.toString() +
                 ' ولهم ' +
                 team1.sum.toString());
